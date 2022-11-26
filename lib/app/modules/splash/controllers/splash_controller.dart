@@ -1,23 +1,18 @@
 import 'package:get/get.dart';
 
-class SplashController extends GetxController {
-  //TODO: Implement SplashController
+import '../../../routes/app_pages.dart';
 
-  final count = 0.obs;
+class SplashController extends GetxController with StateMixin<bool> {
   @override
   void onInit() {
     super.onInit();
+    loadingSplashScreen();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void loadingSplashScreen() async {
+    change(true, status: RxStatus.success());
+    await Future.delayed(const Duration(seconds: 3));
+    change(false, status: RxStatus.success());
+    await Get.offAllNamed(Routes.HOME);
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
