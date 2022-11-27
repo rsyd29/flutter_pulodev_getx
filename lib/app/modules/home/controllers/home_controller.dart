@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+import '../providers/home_provider.dart';
 
-  final count = 0.obs;
+class HomeController extends GetxController {
+  final HomeProvider homeProvider;
+  HomeController({required this.homeProvider});
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +20,4 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
