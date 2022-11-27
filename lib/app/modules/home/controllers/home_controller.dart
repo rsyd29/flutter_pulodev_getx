@@ -16,16 +16,6 @@ class HomeController extends GetxController
     getAllContent();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   String changeFilterMediaName(String media) {
     String? mediaNamed;
 
