@@ -25,11 +25,14 @@ class HomeView extends GetView<HomeController> {
                           scrollDirection: Axis.horizontal,
                           itemCount: Media.values.length,
                           itemBuilder: (context, index) {
+                            int lastIndexMedia = Media.values.length;
                             var data = Media.values[index];
                             return Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 4.0,
-                                vertical: 8.0,
+                              margin: EdgeInsets.only(
+                                top: 4.0,
+                                bottom: 4.0,
+                                left: index == 0 ? 0 : 8,
+                                right: index == lastIndexMedia - 1 ? 0 : 4,
                               ),
                               child: OutlinedButton(
                                 style: OutlinedButton.styleFrom(
@@ -43,7 +46,7 @@ class HomeView extends GetView<HomeController> {
                                 onPressed: () => filterCategoryC
                                     .changeFilterByMedia(data.name),
                                 child: Text(
-                                  data.name.capitalizeFirst!,
+                                  controller.changeFilterMediaName(data.name),
                                   style: TextStyle(
                                     color: state.contains(data.name)
                                         ? Colors.black

@@ -13,8 +13,11 @@ class HomeProvider extends GetConnect {
   Future<Response> getFilterPage(String page) async =>
       await get('${AppAPI.filterPage}$page');
 
-  Future<Response> getFilterMedia(String media) async =>
-      await get('${AppAPI.filterMedia}$media');
+  Future<Response> getFilterMedia(String media) async {
+    return media.contains('Semua')
+        ? await get('${AppAPI.filterMedia}$media')
+        : await getAllContent();
+  }
 
   Future<Response> getFilterText(String text) async =>
       await get('${AppAPI.filterText}$text');
