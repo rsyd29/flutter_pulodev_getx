@@ -59,12 +59,13 @@ class HomeView extends GetView<HomeController> {
                       )
                     : const SizedBox.shrink(),
               ),
-              Center(
-                child: Text(
-                  'HomeView is working',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
+              controller.obx(
+                (state) => (state != null)
+                    ? Text(
+                        state.toString(),
+                      )
+                    : const SizedBox.shrink(),
+              )
             ],
           ),
         ),
