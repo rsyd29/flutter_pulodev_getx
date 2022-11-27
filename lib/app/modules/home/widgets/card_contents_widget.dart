@@ -64,8 +64,8 @@ class CardContentsWidget extends StatelessWidget {
                 ),
                 data.body != null
                     ? Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
+                        padding: const EdgeInsets.only(
+                          top: 8.0,
                         ),
                         child: Text(
                           data.body!,
@@ -74,6 +74,48 @@ class CardContentsWidget extends StatelessWidget {
                         ),
                       )
                     : const SizedBox.shrink(),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(
+              left: 8.0,
+              right: 8.0,
+              bottom: 8.0,
+            ),
+            child: Row(
+              children: [
+                Material(
+                  color: Colors.white,
+                  child: InkWell(
+                    onTap: () {
+                      /// TODO Bookmark with local storage
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(Icons.bookmark),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      side: const BorderSide(
+                        color: Colors.black,
+                      ),
+                    ),
+                    onPressed: () {
+                      /// TODO UrlLauncher to link url [data.url]
+                    },
+                    child: const Text(
+                      'Lihat',
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
