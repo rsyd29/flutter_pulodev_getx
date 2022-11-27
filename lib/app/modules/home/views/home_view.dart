@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pulodev_getx/app/modules/home/widgets/card_contents_widget.dart';
+import 'package:flutter_pulodev_getx/app/modules/home/widgets/filter_media_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:get/get.dart';
@@ -22,46 +23,9 @@ class HomeView extends GetView<HomeController> {
               children: [
                 filterCategoryC.obx(
                   (state) => (state != null)
-                      ? SizedBox(
-                          height: 50.0,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: Media.values.length,
-                            itemBuilder: (context, index) {
-                              int lastIndexMedia = Media.values.length;
-                              var data = Media.values[index];
-                              return Container(
-                                margin: EdgeInsets.only(
-                                  top: 4.0,
-                                  bottom: 4.0,
-                                  left: index == 0 ? 0 : 8,
-                                  right: index == lastIndexMedia - 1 ? 0 : 4,
-                                ),
-                                child: OutlinedButton(
-                                  style: OutlinedButton.styleFrom(
-                                    side: BorderSide(
-                                      color: state.contains(data.name)
-                                          ? Colors.black
-                                          : Colors.grey,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  onPressed: () => filterCategoryC
-                                      .changeFilterByMedia(data.name),
-                                  child: Text(
-                                    controller.changeFilterMediaName(data.name),
-                                    style: TextStyle(
-                                      color: state.contains(data.name)
-                                          ? Colors.black
-                                          : Colors.grey,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                      ? FilterMediaWidget(
+                          filterCategoryC: filterCategoryC,
+                          state: state,
                         )
                       : const SizedBox.shrink(),
                 ),
