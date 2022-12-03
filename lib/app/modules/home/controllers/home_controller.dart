@@ -96,4 +96,32 @@ class HomeController extends GetxController
       print('$e\n$s');
     }
   }
+
+  void getAllContentWithFilterByText(String newSearchTerm) async {
+    try {
+      change(null, status: RxStatus.loading());
+      await homeProvider.getFilterText(newSearchTerm).then(
+        (response) {
+          if (response.statusCode == 200) {
+            List<DatumContents> data =
+                (jsonDecode(response.body)['data'] as List)
+                    .map((e) => DatumContents.fromJson(e))
+                    .toList();
+
+            if (data.isEmpty) {
+              change([], status: RxStatus.empty());
+            } else {
+              change(data, status: RxStatus.success());
+            }
+          } else {
+            change(null,
+                status:
+                    RxStatus.error('${response.statusCode}: ${response.body}'));
+          }
+        },
+      );
+    } catch (e, s) {
+      print('$e\n$s');
+    }
+  }
 }

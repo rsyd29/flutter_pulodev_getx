@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pulodev_getx/app/modules/home/widgets/card_contents_widget.dart';
 import 'package:flutter_pulodev_getx/app/modules/home/widgets/filter_media_widget.dart';
+import 'package:flutter_pulodev_getx/app/modules/home/widgets/search_contents_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -54,27 +55,12 @@ class HomeView extends GetView<HomeController> {
                 horizontal: 8.0,
               ),
               child: Column(
-                children: [
-                  TextFormField(
-                    cursorColor: Colors.black,
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      labelStyle: const TextStyle(
-                        color: Colors.black,
-                        decorationColor: Colors.black,
-                      ),
-                      prefixIcon: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.search,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
+                children: const [
+                  SearchContentsWidget(),
+                  SizedBox(
                     height: 8.0,
                   ),
-                  const FilterMediaWidget()
+                  FilterMediaWidget()
                 ],
               ),
             ),
