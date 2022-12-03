@@ -30,7 +30,7 @@ class CardContentsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          data.thumbnail != null
+          (data.thumbnail != null && data.thumbnail != '')
               ? CachedNetworkImage(imageUrl: data.thumbnail!)
               : const SizedBox.shrink(),
           Padding(
