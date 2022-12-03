@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pulodev_getx/app/services/url_launcher_service.dart';
 
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -108,8 +109,9 @@ class CardContentsWidget extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       /// TODO UrlLauncher to link url [data.url]
+                      await UrlLauncherService.launchInBrowser(data.url);
                     },
                     child: const Text(
                       'Lihat',
