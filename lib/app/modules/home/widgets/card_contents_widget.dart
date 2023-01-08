@@ -32,7 +32,10 @@ class CardContentsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           (data.thumbnail != null && data.thumbnail != '')
-              ? CachedNetworkImage(imageUrl: data.thumbnail!)
+              ? CachedNetworkImage(
+                  imageUrl: data.thumbnail!,
+                  errorWidget: (_, __, ___) => const SizedBox.shrink(),
+                )
               : const SizedBox.shrink(),
           Padding(
             padding: const EdgeInsets.all(8.0),

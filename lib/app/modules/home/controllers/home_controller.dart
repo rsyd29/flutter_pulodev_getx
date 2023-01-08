@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/contents_model.dart';
@@ -8,6 +9,7 @@ import '../providers/home_provider.dart';
 class HomeController extends GetxController
     with StateMixin<List<DatumContents>> {
   final HomeProvider homeProvider;
+
   HomeController({required this.homeProvider});
 
   @override
@@ -63,7 +65,7 @@ class HomeController extends GetxController
         },
       );
     } catch (e, s) {
-      print('$e\n$s');
+      debugPrint('$e\n$s');
     }
   }
 
@@ -93,7 +95,7 @@ class HomeController extends GetxController
         },
       );
     } catch (e, s) {
-      print('$e\n$s');
+      debugPrint('$e\n$s');
     }
   }
 
@@ -121,7 +123,7 @@ class HomeController extends GetxController
         },
       );
     } catch (e, s) {
-      print('$e\n$s');
+      debugPrint('$e\n$s');
     }
   }
 }
