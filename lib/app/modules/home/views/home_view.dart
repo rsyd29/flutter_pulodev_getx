@@ -85,7 +85,9 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   controller.obx(
                     onLoading: const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: Colors.black,
+                      ),
                     ),
                     (state) => (state != null)
                         ? StaggeredGrid.count(
