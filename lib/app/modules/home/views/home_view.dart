@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pulodev_getx/app/modules/home/controllers/filter_category_controller.dart';
 import 'package:flutter_pulodev_getx/app/modules/home/widgets/card_contents_widget.dart';
 import 'package:flutter_pulodev_getx/app/modules/home/widgets/filter_media_widget.dart';
 import 'package:flutter_pulodev_getx/app/modules/home/widgets/search_contents_widget.dart';
@@ -68,27 +69,39 @@ class HomeView extends GetView<HomeController> {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                controller.obx(
-                  onLoading: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  (state) => (state != null)
-                      ? StaggeredGrid.count(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 8,
-                          crossAxisSpacing: 8,
-                          children: state
-                              .map<Widget>(
-                                (data) => CardContentsWidget(data: data),
-                              )
-                              .toList(),
-                        )
-                      : const SizedBox.shrink(),
-                )
-              ],
+          child: RefreshIndicator(
+            onRefresh: () async => (Get.find<FilterCategoryController>()
+                        .state !=
+                    null)
+                ? ((Get.find<FilterCategoryController>().state ?? '') == 'all')
+                    ? controller.getAllContent()
+                    : controller.getAllContentWithFilterByMedia(
+                        Get.find<FilterCategoryController>().state ?? '',
+                      )
+                : controller.getAllContent(),
+            color: Colors.black,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  controller.obx(
+                    onLoading: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    (state) => (state != null)
+                        ? StaggeredGrid.count(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 8,
+                            crossAxisSpacing: 8,
+                            children: state
+                                .map<Widget>(
+                                  (data) => CardContentsWidget(data: data),
+                                )
+                                .toList(),
+                          )
+                        : const SizedBox.shrink(),
+                  )
+                ],
+              ),
             ),
           ),
         ),
