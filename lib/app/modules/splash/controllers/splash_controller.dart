@@ -13,6 +13,6 @@ class SplashController extends GetxController with StateMixin<bool> {
     change(true, status: RxStatus.success());
     await Future.delayed(const Duration(seconds: 3));
     change(false, status: RxStatus.success());
-    await Get.offAllNamed(Routes.HOME);
+    await Get.offAllNamed(Routes.BOTTOM_NAVIGATION);
   }
 }
