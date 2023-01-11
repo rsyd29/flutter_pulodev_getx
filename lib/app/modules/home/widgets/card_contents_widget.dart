@@ -114,7 +114,7 @@ class CardContentsWidget extends StatelessWidget {
                     ),
                     onPressed: () async {
                       /// TODO UrlLauncher to link url [data.url]
-                      await UrlLauncherService.launchInBrowser(data.url);
+                      await UrlLauncherService.launchInAppWebView(data.url);
                     },
                     child: const Text(
                       'Lihat',
