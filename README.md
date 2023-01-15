@@ -1,16 +1,14 @@
-# flutter_pulodev_getx
+# Flutter Pulodev With State Management GetX
 
-A new Flutter project.
+Create application PuloDev (Kumpulan konten developer Indonesia)
 
-## Getting Started
+## ScreenShot
 
-This project is a starting point for a Flutter application.
+| Home                                 | Favorite                              |
+|--------------------------------------|---------------------------------------|
+| <img src="beranda.png" width="300"/> | <img src="favorite.png" width="300"/> |
 
-A few resources to get you started if this is your first Flutter project:
+## Contact:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Github: https://github.com/rsyd29
+* Linkedin: https://linkedin.com/in/budimanrasyid
