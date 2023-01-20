@@ -101,7 +101,10 @@ class HomeView extends GetView<HomeController> {
                                 .toList(),
                           )
                         : const SizedBox.shrink(),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
                 ],
               ),
             ),
