@@ -33,6 +33,7 @@ class AppPages {
       bindings: [
         BottomNavigationBinding(),
         HomeBinding(),
+        FavoriteBinding(),
       ],
     ),
     GetPage(
