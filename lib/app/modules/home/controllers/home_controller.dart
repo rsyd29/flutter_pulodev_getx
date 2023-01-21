@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_pulodev_getx/app/services/local_storage_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/contents_model.dart';
@@ -39,6 +41,85 @@ class HomeController extends GetxController
         break;
     }
     return mediaNamed ?? 'Not Found';
+  }
+
+  Future<List<DatumContents>?> readFavoriteContent() async {
+    var data = LocalStorageService.readFromStorage(
+      storageName: LocalStorageService.favoriteStorage,
+      key: 'favorite',
+    );
+
+    if (data != null) {
+      List<DatumContents>? allData = (jsonDecode(data) as List)
+          .map((e) => DatumContents.fromJson(e))
+          .toList();
+      return allData;
+    } else {
+      return null;
+    }
+  }
+
+  void saveFavoriteContent(DatumContents data) async {
+    List<DatumContents> newDataStorage = [data];
+    List<DatumContents>? allDataStorage = await readFavoriteContent();
+    if (allDataStorage != null) {
+      List<DatumContents> newAllDataStorage = List.from(allDataStorage)
+        ..addAll(newDataStorage);
+      String encodeData = jsonEncode(newAllDataStorage.toSet().toList());
+      LocalStorageService.writeToStorage(
+        storageName: LocalStorageService.favoriteStorage,
+        key: 'favorite',
+        value: encodeData,
+      );
+      await Fluttertoast.showToast(
+        msg: 'Berhasil menyimpan ${data.title}',
+        backgroundColor: Colors.green,
+      );
+    } else {
+      List<DatumContents> dataSaved = [data];
+      String encodeData = jsonEncode(dataSaved);
+      LocalStorageService.writeToStorage(
+        storageName: LocalStorageService.favoriteStorage,
+        key: 'favorite',
+        value: encodeData,
+      );
+      await Fluttertoast.showToast(
+        msg: 'Berhasil menyimpan ${data.title}',
+        backgroundColor: Colors.green,
+      );
+    }
+  }
+
+  void deleteFavoriteContent(DatumContents data) async {
+    List<DatumContents>? allDataStorage = await readFavoriteContent();
+    if (allDataStorage != null) {
+      allDataStorage.remove(data);
+      String encodeData = jsonEncode(allDataStorage);
+      LocalStorageService.writeToStorage(
+        storageName: LocalStorageService.favoriteStorage,
+        key: 'favorite',
+        value: encodeData,
+      );
+      await Fluttertoast.showToast(
+        msg: 'Berhasil menghapus ${data.title}',
+        backgroundColor: Colors.red,
+      );
+    }
+  }
+
+  void onPressedFavorite(DatumContents data) async {
+    print('test');
+    List<DatumContents>? storageData = await readFavoriteContent();
+    if (storageData != null) {
+      int index = storageData.indexOf(data);
+      if (index.isNegative) {
+        saveFavoriteContent(data);
+      } else {
+        deleteFavoriteContent(data);
+      }
+    } else {
+      saveFavoriteContent(data);
+    }
   }
 
   void getAllContent() async {

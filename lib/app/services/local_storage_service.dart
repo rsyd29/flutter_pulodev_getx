@@ -1,9 +1,10 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LocalStorageService {
-  static final favoriteStorage = createStorage(name: 'favorite');
+  static final favoriteStorage = getStorage(name: 'favorite');
 
-  static GetStorage createStorage({required String name}) {
+  static GetStorage getStorage({required String name}) {
     return GetStorage(name);
   }
 
@@ -15,17 +16,22 @@ class LocalStorageService {
     await storageName.write(key, value);
   }
 
-  static readFromStorage({
+  static String? readFromStorage({
     required GetStorage storageName,
     required String key,
   }) {
-    storageName.read(key);
+    var data = storageName.read(key);
+    return data;
   }
 
   static removeForStorage({
     required GetStorage storageName,
     required String key,
   }) async {
-    await storageName.remove(key);
+    await storageName.remove(key).then(
+          (_) => Fluttertoast.showToast(
+            msg: 'Berhasil menghapus',
+          ),
+        );
   }
 }

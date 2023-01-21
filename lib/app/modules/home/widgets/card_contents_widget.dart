@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pulodev_getx/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter_pulodev_getx/app/services/url_launcher_service.dart';
+import 'package:get/get.dart';
 
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -93,7 +95,7 @@ class CardContentsWidget extends StatelessWidget {
                   color: Colors.white,
                   child: InkWell(
                     onTap: () {
-                      /// TODO Bookmark with local storage
+                      Get.find<HomeController>().onPressedFavorite(data);
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),

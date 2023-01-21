@@ -65,6 +65,45 @@ class DatumContents {
   final int? sourceId;
   final String contributor;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DatumContents &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          title == other.title &&
+          url == other.url &&
+          body == other.body &&
+          tags == other.tags &&
+          media == other.media &&
+          thumbnail == other.thumbnail &&
+          owner == other.owner &&
+          draft == other.draft &&
+          originalPublishedAt == other.originalPublishedAt &&
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
+          deletedAt == other.deletedAt &&
+          sourceId == other.sourceId &&
+          contributor == other.contributor;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      title.hashCode ^
+      url.hashCode ^
+      body.hashCode ^
+      tags.hashCode ^
+      media.hashCode ^
+      thumbnail.hashCode ^
+      owner.hashCode ^
+      draft.hashCode ^
+      originalPublishedAt.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      deletedAt.hashCode ^
+      sourceId.hashCode ^
+      contributor.hashCode;
+
   factory DatumContents.fromJson(Map<String, dynamic> json) => DatumContents(
         id: json["id"],
         title: json["title"],
