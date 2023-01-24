@@ -11,7 +11,8 @@ class SearchContentsWidget extends GetView<SearchContentsController> {
     return TextFormField(
       controller: controller.searchController,
       cursorColor: Colors.black,
-      onChanged: (newSearchTerm) => controller.onSearchContent(newSearchTerm),
+      onFieldSubmitted: (newSearchTerm) =>
+          controller.onSearchContent(newSearchTerm),
       decoration: InputDecoration(
         hintText: 'Search',
         labelStyle: const TextStyle(
