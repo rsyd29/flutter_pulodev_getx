@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 
 class SearchContentsController extends GetxController with StateMixin<String> {
   SearchContentsController({required this.homeProvider});
+
   final HomeProvider homeProvider;
 
   late TextEditingController searchController;
+  final textSearch = ''.obs;
 
   @override
   void onInit() {

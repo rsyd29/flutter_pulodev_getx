@@ -8,24 +8,39 @@ class SearchContentsWidget extends GetView<SearchContentsController> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller.searchController,
-      cursorColor: Colors.black,
-      onFieldSubmitted: (newSearchTerm) =>
-          controller.onSearchContent(newSearchTerm),
-      decoration: InputDecoration(
-        hintText: 'Search',
-        labelStyle: const TextStyle(
-          color: Colors.black,
-          decorationColor: Colors.black,
-        ),
-        prefixIcon: IconButton(
-          onPressed: () {},
-          icon: const Icon(
+    return Obx(() {
+      return TextFormField(
+        controller: controller.searchController,
+        cursorColor: Colors.black,
+        onChanged: (value) {
+          controller.textSearch.value = value;
+          controller.update();
+        },
+        onFieldSubmitted: (newSearchTerm) =>
+            controller.onSearchContent(newSearchTerm),
+        decoration: InputDecoration(
+          hintText: 'Search',
+          labelStyle: const TextStyle(
+            color: Colors.black,
+            decorationColor: Colors.black,
+          ),
+          prefixIcon: const Icon(
             Icons.search,
           ),
+          suffixIcon: controller.textSearch.trim().isNotEmpty
+              ? IconButton(
+                  onPressed: () {
+                    controller.searchController.clear();
+                    controller.textSearch.value = '';
+                    controller.update();
+                    controller.onSearchContent(
+                        controller.searchController.text.trim());
+                  },
+                  icon: const Icon(Icons.close),
+                )
+              : null,
         ),
-      ),
-    );
+      );
+    });
   }
 }
