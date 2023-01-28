@@ -12,10 +12,7 @@ class SearchContentsWidget extends GetView<SearchContentsController> {
       return TextFormField(
         controller: controller.searchController,
         cursorColor: Colors.black,
-        onChanged: (value) {
-          controller.textSearch.value = value;
-          controller.update();
-        },
+        onChanged: (value) => controller.textSearch.value = value,
         onFieldSubmitted: (newSearchTerm) =>
             controller.onSearchContent(newSearchTerm),
         decoration: InputDecoration(
@@ -29,13 +26,7 @@ class SearchContentsWidget extends GetView<SearchContentsController> {
           ),
           suffixIcon: controller.textSearch.trim().isNotEmpty
               ? IconButton(
-                  onPressed: () {
-                    controller.searchController.clear();
-                    controller.textSearch.value = '';
-                    controller.update();
-                    controller.onSearchContent(
-                        controller.searchController.text.trim());
-                  },
+                  onPressed: () => controller.clearSearch(),
                   icon: const Icon(Icons.close),
                 )
               : null,

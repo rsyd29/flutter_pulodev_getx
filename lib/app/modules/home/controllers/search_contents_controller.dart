@@ -29,4 +29,12 @@ class SearchContentsController extends GetxController with StateMixin<String> {
     change(newSearchTerm, status: RxStatus.success());
     return newSearchTerm;
   }
+
+  void clearSearch() {
+    searchController.clear();
+    textSearch.value = '';
+    onSearchContent(
+      searchController.text.trim(),
+    );
+  }
 }
